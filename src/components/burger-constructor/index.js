@@ -4,9 +4,9 @@ import styles from './styles.module.css'
 
 const BurgerConstructor = ({IngredientData}) => {
     return (
-    <div className={`max-width-600 d-flex flex-column ${styles.constructorWrapper}`}>
+    <div className={`d-flex flex-column ${styles.constructorWrapper}`}>
         <section className={styles.constructorList}>
-            <div>
+            <div className='pl-15'>
                 <ConstructorElement
                     type="top"
                     isLocked={true}
@@ -16,8 +16,8 @@ const BurgerConstructor = ({IngredientData}) => {
                     />
             </div>
             <div className={styles.constructorScroll}>
-                <div className={styles.constructorList}>
-                    {IngredientData.map((item, index) => 
+                <div className={`pl-15 ${styles.constructorList}`}>
+                    {IngredientData.slice(1).map((item, index) => 
                             <ConstructorElement
                                 key={item._id}
                                 text={item.name}
@@ -28,7 +28,7 @@ const BurgerConstructor = ({IngredientData}) => {
                             )}
                 </div>
             </div>
-            <div>
+            <div className='pl-15'>
                 <ConstructorElement
                     type="bottom"
                     isLocked={true}
@@ -38,7 +38,7 @@ const BurgerConstructor = ({IngredientData}) => {
                     />
             </div>
         </section>
-        <div className="d-flex align-items-center justify-content-end">
+        <div className="d-flex align-items-center mr-4 justify-content-end">
             <span className="text text_type_digits-medium mr-10">610 <CurrencyIcon/></span>
             <Button>
                 Оформить заказ

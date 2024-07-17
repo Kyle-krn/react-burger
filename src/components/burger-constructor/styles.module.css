@@ -1,15 +1,16 @@
 .constructorScroll {
     overflow-y: auto;
-    height: calc(100vh - 510px);
+    max-height: calc(100vh - 630px);
 }
 
 .constructorList {
     display: flex; 
     flex-direction: column; 
     gap: 16px;
-    align-items: end;
 }
 
 .constructorWrapper {
     gap: 40px;
+    max-width: 617px;
+    justify-content: space-between;
 }

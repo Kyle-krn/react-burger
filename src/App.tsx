@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main className='text text_type_main-default' style={{maxWidth: '1280px', margin: '0 auto'}}>
+      <main className='text text_type_main-default' style={{maxWidth: '1240px', margin: '0 auto'}}>
         <IngredientsPage />
       </main>  
     </div>
