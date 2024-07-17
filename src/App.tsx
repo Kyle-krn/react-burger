@@ -1,24 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/app-header';
+import IngredientsPage from './pages/ingredients';
+import BurgerConstructor from './components/burger-constructor';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <main className='text text_type_main-default' style={{maxWidth: '1280px', margin: '0 auto'}}>
+        <IngredientsPage />
+      </main>  
     </div>
   );
 }

@@ -1,0 +1,15 @@
+.constructorScroll {
+    overflow-y: auto;
+    height: calc(100vh - 510px);
+}
+
+.constructorList {
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px;
+    align-items: end;
+}
+
+.constructorWrapper {
+    gap: 40px;
+}
