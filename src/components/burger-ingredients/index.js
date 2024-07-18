@@ -25,7 +25,7 @@ const BurgerIngredients = ({IngredientData}) => {
                     Начинки
                 </Tab>
             </div>
-            <div className={styles.ingredientsScroll}>
+            <div className={`custom-scroll ${styles.ingredientsScroll}`}>
                 <IngredientsList id='bun' ingredients={IngredientData.filter(item => item.type === 'bun')} title="Булки"/>
                 <IngredientsList id='sauce' ingredients={IngredientData.filter(item => item.type === 'sauce')} title="Соусы"/>
                 <IngredientsList id='main' ingredients={IngredientData.filter(item => item.type === 'main')} title="Начинки"/>

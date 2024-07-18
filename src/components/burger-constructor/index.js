@@ -15,7 +15,7 @@ const BurgerConstructor = ({IngredientData}) => {
                     thumbnail={IngredientData[0].image}
                     />
             </div>
-            <div className={styles.constructorScroll}>
+            <div className={`custom-scroll ${styles.constructorScroll}`}>
                 <div className={`pl-15 ${styles.constructorList}`}>
                     {IngredientData.slice(1).map((item, index) => 
                             <ConstructorElement
