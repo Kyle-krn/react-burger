@@ -7,7 +7,7 @@ const IngredientsList = ({title, ingredients, id}) => {
         <div className="mt-10" id={id}>
             <p className={`text-align-l mb-6 text_type_main-medium`}>{title}</p>  
             <div className={styles.cardsWrapper}>
-                {ingredients.map(item => <IngredientsItem key={item._id} name={item.name} price={item.price} image={item.image}/>)}
+                {ingredients.map(item => <IngredientsItem key={item._id} name={item.name} price={item.price} image={item.image} count={0}/>)}
             </div>
         </div>
     )

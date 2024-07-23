@@ -40,7 +40,7 @@ const BurgerConstructor = ({ingredientData}) => {
         </section>
         <div className="d-flex align-items-center mr-4 justify-content-end">
             <span className="text text_type_digits-medium mr-10">610 <CurrencyIcon/></span>
-            <Button>
+            <Button htmlType='submit'>
                 Оформить заказ
             </Button>
         </div>

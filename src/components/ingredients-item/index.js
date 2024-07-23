@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const IngredientsItem = ({image, name, price, count}) => {
     return (
         <div className={styles.ingredientCard}>
-            {count && <Counter count={1} size="default" extraClass="m-1" />}
+            {count? <Counter count={1} size="default" extraClass="m-1" />:null}
             <img className="pl-4 pr-4" src={image} alt={name}></img>
             <span className={`mt-1 mb-1 text text_type_digits-default ${styles.ingredientCardCoast}`}>
                 {price}
@@ -20,7 +20,7 @@ IngredientsItem.propTypes = {
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    count: 0,
+    count: PropTypes.number,
 }
 
 export default IngredientsItem;
