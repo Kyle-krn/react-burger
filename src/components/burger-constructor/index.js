@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './styles.module.css'
 
-const BurgerConstructor = ({IngredientData}) => {
+const BurgerConstructor = ({ingredientData}) => {
     return (
     <div className={`d-flex flex-column ${styles.constructorWrapper}`}>
         <section className={styles.constructorList}>
@@ -10,14 +10,14 @@ const BurgerConstructor = ({IngredientData}) => {
                 <ConstructorElement
                     type="top"
                     isLocked={true}
-                    text={IngredientData[0].name}
-                    price={IngredientData[0].price}
-                    thumbnail={IngredientData[0].image}
+                    text={ingredientData[0].name}
+                    price={ingredientData[0].price}
+                    thumbnail={ingredientData[0].image}
                     />
             </div>
             <div className={`custom-scroll ${styles.constructorScroll}`}>
                 <div className={`pl-15 ${styles.constructorList}`}>
-                    {IngredientData.slice(1).map((item, index) => 
+                    {ingredientData.slice(1).map((item, index) => 
                             <ConstructorElement
                                 key={item._id}
                                 text={item.name}
@@ -32,9 +32,9 @@ const BurgerConstructor = ({IngredientData}) => {
                 <ConstructorElement
                     type="bottom"
                     isLocked={true}
-                    text={IngredientData[0].name}
-                    price={IngredientData[0].price}
-                    thumbnail={IngredientData[0].image}
+                    text={ingredientData[0].name}
+                    price={ingredientData[0].price}
+                    thumbnail={ingredientData[0].image}
                     />
             </div>
         </section>
@@ -49,7 +49,7 @@ const BurgerConstructor = ({IngredientData}) => {
 }
 
 BurgerConstructor.propTypes = {
-    IngredientData: PropTypes.arrayOf(PropTypes.object),
+    ingredientData: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default BurgerConstructor;

@@ -5,7 +5,7 @@ import IngredientsList from "../ingredients-list";
 import styles from './styles.module.css';
 
 
-const BurgerIngredients = ({IngredientData}) => {
+const BurgerIngredients = ({ingredientData}) => {
     const [current, setCurrent] = useState('bun');
 
     useEffect(() => {
@@ -26,16 +26,16 @@ const BurgerIngredients = ({IngredientData}) => {
                 </Tab>
             </div>
             <div className={`custom-scroll ${styles.ingredientsScroll}`}>
-                <IngredientsList id='bun' ingredients={IngredientData.filter(item => item.type === 'bun')} title="Булки"/>
-                <IngredientsList id='sauce' ingredients={IngredientData.filter(item => item.type === 'sauce')} title="Соусы"/>
-                <IngredientsList id='main' ingredients={IngredientData.filter(item => item.type === 'main')} title="Начинки"/>
+                <IngredientsList id='bun' ingredients={ingredientData.filter(item => item.type === 'bun')} title="Булки"/>
+                <IngredientsList id='sauce' ingredients={ingredientData.filter(item => item.type === 'sauce')} title="Соусы"/>
+                <IngredientsList id='main' ingredients={ingredientData.filter(item => item.type === 'main')} title="Начинки"/>
             </div>
         </section>
     )
 }
 
 BurgerIngredients.propTypes = {
-    IngredientData: PropTypes.arrayOf(PropTypes.object),
+    ingredientData: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default BurgerIngredients;
