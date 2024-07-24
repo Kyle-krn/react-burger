@@ -15,6 +15,10 @@ code {
 .text-align-l {
   text-align: left;
 }
+
+.text-align-center {
+  text-align: center;
+}
 .d-flex {
   display: flex;
 }
@@ -84,4 +88,16 @@ time, mark, audio, video {
 main {
   max-width: 1240px;
   margin: 0 auto;
+}
+
+/* Сброс стандартных стилей кнопки */
+button {
+    background: none; /* Убирает фон */
+    border: none; /* Убирает рамку */
+    padding: 0; /* Убирает внутренние отступы */
+    margin: 0; /* Убирает внешние отступы */
+    font: inherit; /* Убирает стандартный шрифт */
+    color: inherit; /* Убирает стандартный цвет текста */
+    cursor: pointer; /* Указывает, что элемент кликабельный */
+    outline: none; /* Убирает обводку при фокусе */
 }

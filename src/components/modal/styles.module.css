@@ -1,0 +1,12 @@
+.modal {
+    display: inline-block;
+    background-color: #1C1C21;
+    width: 640px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    z-index: 2;
+    padding: 40px 40px 0px 40px;
+}
