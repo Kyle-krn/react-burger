@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './styles.module.css'
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Modal from '../modal';
 import OrderDetails from '../order-details';
 
 const BurgerConstructor = ({ingredientData}) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const handlerOpenModal = () => {
+    const handlerOpenModal = useCallback(() => {
         setIsOpen(true);
-    }
+    });
 
-    const handlerCloseModal = () => {
+    const handlerCloseModal = useCallback(() => {
         setIsOpen(false);
-    };
+    });
 
     return (
     <>

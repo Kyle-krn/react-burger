@@ -6,6 +6,7 @@
     max-width: 272px;
     max-height: 208px;
     position: relative;
+    cursor: pointer;
 }
 
 .ingredientCardTitle {
