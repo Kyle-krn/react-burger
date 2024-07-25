@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom';
 import ModalOverlay from './modal-overlay';
-import { Button, CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './styles.module.css'
 import { useEffect } from 'react';
 
@@ -22,8 +22,8 @@ const Modal = ({title, onClose, children}) => {
             <>
                 <ModalOverlay onClose={onClose}/>
                 <div className={`text text_type_main-default ${styles.modal}`}>
-                    <div className='modal-header text_type_main-large d-flex align-items-center justify-content-between'>
-                        {title}
+                    <div className={`modal-header d-flex align-items-center justify-content-between ${title? 'pt-10' : 'pt-15'}`}>
+                        <span className='text_type_main-large'>{title}</span>
                         <button className={styles.closeBtn} onClick={onClose}><CloseIcon type="primary" /></button>
                     </div>
                     <div className='modal-body'>{children}</div>
