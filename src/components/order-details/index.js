@@ -1,4 +1,4 @@
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 import done from '../../image/done.png';
 import PropTypes from 'prop-types';
 

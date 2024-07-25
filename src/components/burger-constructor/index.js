@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 import { useCallback, useState } from 'react';
 import Modal from '../modal';
 import OrderDetails from '../order-details';

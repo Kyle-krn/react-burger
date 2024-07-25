@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 import IngredientsItem from "../ingredients-item";
 
 const IngredientsList = ({title, ingredients, id, onClick}) => {

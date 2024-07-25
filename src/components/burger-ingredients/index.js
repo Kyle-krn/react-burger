@@ -12,7 +12,7 @@ const BurgerIngredients = ({ingredientData}) => {
 
     useEffect(() => {
 		document.querySelector(`#${current}`)?.scrollIntoView({behavior: 'smooth'});
-	},[current])
+	},[current]);
 
     const handlerOpenInfo = useCallback((ingredientId) => {
         const ingredientDetail = ingredientData.filter(item => item._id === ingredientId);
