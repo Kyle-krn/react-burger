@@ -21,6 +21,8 @@ IngredientsItem.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     count: PropTypes.number,
+    id: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
 }
 
 export default IngredientsItem;

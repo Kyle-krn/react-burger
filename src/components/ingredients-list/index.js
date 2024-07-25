@@ -17,6 +17,7 @@ IngredientsList.propTypes = {
     title: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
     id: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
 }
 
 export default IngredientsList;
