@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const IngredientDetails = ({image, name, calories, carbohydrates, fat, proteins}) => {
     return (
         <div className={styles.detail}>
-            <img className={styles.image} src={image}/>
+            <img className={styles.image} src={image} alt={name}/>
             <span className={`text_type_main-medium text-align-center mt-4 mb-8 ${styles.title}`}>{name}</span>
             <div className={`d-flex ${styles.info}`}>
                 <div className={styles.infoItem}>

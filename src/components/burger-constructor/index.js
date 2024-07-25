@@ -10,11 +10,11 @@ const BurgerConstructor = ({ingredientData}) => {
 
     const handlerOpenModal = useCallback(() => {
         setIsOpen(true);
-    });
+    }, [setIsOpen]);
 
     const handlerCloseModal = useCallback(() => {
         setIsOpen(false);
-    });
+    }, [setIsOpen]);
 
     return (
     <>

@@ -17,11 +17,11 @@ const BurgerIngredients = ({ingredientData}) => {
     const handlerOpenInfo = useCallback((ingredientId) => {
         const ingredientDetail = ingredientData.filter(item => item._id === ingredientId);
         setSelectedIngredient(ingredientDetail[0]);
-    })
+    }, [ingredientData, setSelectedIngredient]);
 
     const handlerCloseInfo = useCallback(() => {
         setSelectedIngredient(null);
-    })
+    }, []);
     
     return (
         <section className="max-width-600">

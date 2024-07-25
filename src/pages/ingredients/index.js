@@ -28,7 +28,7 @@ const IngredientsPage = () => {
             }
         }
         getIngredients();
-    }, []); 
+    }, [setState, state]); 
     return (
         <>
             <h1 className="text-align-l mt-10 mb-5 text_type_main-large">Соберите бургер</h1>
