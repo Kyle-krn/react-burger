@@ -17,6 +17,9 @@ const IngredientsPage = () => {
             try {
                 setState({ ...state, isLoading: true, error: null });
                 const res = await fetch(API_URL);
+                if (!res.ok) {
+                    throw new Error();
+                }
                 const data = await res.json();
                 setState({
                     ingredientData: data.data,
@@ -28,7 +31,7 @@ const IngredientsPage = () => {
             }
         }
         getIngredients();
-    }, [setState, state]); 
+    }, []); 
     return (
         <>
             <h1 className="text-align-l mt-10 mb-5 text_type_main-large">Соберите бургер</h1>
