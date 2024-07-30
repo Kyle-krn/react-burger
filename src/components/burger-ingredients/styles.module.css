@@ -1,0 +1,4 @@
+.ingredientsScroll {
+    overflow: auto;
+    height: calc(100vh - 400px);
+}
