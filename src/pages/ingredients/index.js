@@ -39,7 +39,7 @@ const IngredientsPage = () => {
                 {
                 state.isLoading === false && state.error === null && state.ingredientData.length > 0? 
                 <>
-                    <BurgerIngredients ingredientData={state.ingredientData}/>
+                    <BurgerIngredients />
                     <BurgerConstructor ingredientData={state.ingredientData}/>
                 </>
                 : 

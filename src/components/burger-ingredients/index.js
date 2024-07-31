@@ -5,23 +5,35 @@ import IngredientsList from "../ingredients-list";
 import styles from './styles.module.css';
 import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
+import { useDispatch, useSelector } from "react-redux";
+import { getIngredients } from "../../services/indgredients";
 
-const BurgerIngredients = ({ingredientData}) => {
+import { setIngredient, resetIngredient } from "../../services/ingredient-detail";
+
+const BurgerIngredients = () => {
+    const ingredients = useSelector(state => state.ingredients.ingredients);
+
+    const dispatch = useDispatch();
+
     const [current, setCurrent] = useState('bun');
-    const [selectedIngredient, setSelectedIngredient] = useState(null);
+    const selectedIngredient = useSelector(state => state.ingredientDetail.ingredient);
+
+    useEffect(() => {
+        dispatch(getIngredients());
+    }, [dispatch]);
 
     useEffect(() => {
 		document.querySelector(`#${current}`)?.scrollIntoView({behavior: 'smooth'});
 	},[current]);
 
     const handlerOpenInfo = useCallback((ingredientId) => {
-        const ingredientDetail = ingredientData.filter(item => item._id === ingredientId);
-        setSelectedIngredient(ingredientDetail[0]);
-    }, [ingredientData, setSelectedIngredient]);
+        const ingredientDetail = ingredients.filter(item => item._id === ingredientId);
+        dispatch(setIngredient(ingredientDetail[0]));
+    }, [ingredients, dispatch, setIngredient]);
 
     const handlerCloseInfo = useCallback(() => {
-        setSelectedIngredient(null);
-    }, []);
+        dispatch(resetIngredient());
+    }, [dispatch, resetIngredient]);
     
     return (
         <section className="max-width-600">
@@ -37,9 +49,9 @@ const BurgerIngredients = ({ingredientData}) => {
                 </Tab>
             </div>
             <div className={`custom-scroll ${styles.ingredientsScroll}`}>
-                <IngredientsList id='bun' ingredients={ingredientData.filter(item => item.type === 'bun')} title="Булки" onClick={handlerOpenInfo}/>
-                <IngredientsList id='sauce' ingredients={ingredientData.filter(item => item.type === 'sauce')} title="Соусы" onClick={handlerOpenInfo}/>
-                <IngredientsList id='main' ingredients={ingredientData.filter(item => item.type === 'main')} title="Начинки" onClick={handlerOpenInfo}/>
+                <IngredientsList id='bun' ingredients={ingredients.filter(item => item.type === 'bun')} title="Булки" onClick={handlerOpenInfo}/>
+                <IngredientsList id='sauce' ingredients={ingredients.filter(item => item.type === 'sauce')} title="Соусы" onClick={handlerOpenInfo}/>
+                <IngredientsList id='main' ingredients={ingredients.filter(item => item.type === 'main')} title="Начинки" onClick={handlerOpenInfo}/>
             </div>
             {selectedIngredient && 
                 <Modal title="Детали ингредиента" onClose={handlerCloseInfo}>
