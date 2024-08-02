@@ -130,7 +130,7 @@ const DraggableIngredient = ({item, index, moveCard, onDeleteIngredient}) => {
     return (
         <div ref={ref}>
             <ConstructorElement
-                extraClass={`${styles.draggable} ${isDrag? 'opacity-50' : ''}`}
+                extraClass={`${styles.draggable} ${isDrag? 'opacity-50' : ''} ${isHover? styles.hover: ''}`}
                 key={index}
                 text={item.name}
                 price={item.price}

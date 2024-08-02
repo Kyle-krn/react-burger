@@ -10,7 +10,12 @@
 }
 
 .draggable {
+    transition: 0.3s;
     position: relative;
+}
+
+.draggable.hover {
+    border: 1px solid #6fa46f;
 }
 
 .draggable::before {
@@ -25,3 +30,4 @@
     max-width: 617px;
     /* justify-content: space-between; */
 }
+
