@@ -3,27 +3,32 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-    bun: '',
-    ingredients: [],
-    sum: 0, 
+    bun : null,
+    selectedIngredients: [],
 }
 
 const burgerConstructorSlice = createSlice({
     name: 'burgerConstructor',
     initialState: initialState,
     reducers: {
+        addIngredient (state, action) {
+            state.selectedIngredients.push(action.payload);
+        },
+        sortIngredient(state, action) {
+            const { dragIndex, hoverIndex } = action.payload;
+            const draggedItem = state.selectedIngredients[dragIndex];
+            state.selectedIngredients.splice(dragIndex, 1);
+            state.selectedIngredients.splice(hoverIndex, 0, draggedItem);
+        },
+        removeIngredient (state, action) {
+            state.selectedIngredients.splice(action.payload, 1);
+        },
+        resetBurgerConstructor (state, action) {
+            state.selectedIngredients = [];
+        },
         setBun (state, action) {
             state.bun = action.payload;
         },
-        addIngredient (state, action) {
-            state.ingredients.push(action.payload);
-        },
-        removeIngredient (state, action) {
-            state.ingredients.map(ingredient => ingredient._id != action.payload);
-        },
-        resetBurgerConstructor (state, action) {
-            state.ingredients = [];
-        }
     },
   }) 
 
@@ -35,6 +40,7 @@ export const {
     removeIngredient,
     resetBurgerConstructor,
     setBun,
+    sortIngredient,
 } = actions;
 
 export default reducer;

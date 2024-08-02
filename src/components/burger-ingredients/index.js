@@ -15,34 +15,18 @@ const BurgerIngredients = () => {
     
     const ingredients = useSelector(state => state.ingredients.ingredients);
     const selectedIngredient = useSelector(state => state.ingredientDetail.ingredient);
+    
     const [current, setCurrent] = useState('bun');
-
     const tabsRef = {
         bun: useRef(null),
         sauce: useRef(null),
         main: useRef(null),
     };
     const containerRef = useRef(null);
-
-
-    useEffect(() => {
-        dispatch(getIngredients());
-    }, [dispatch]);
-
     const setTab = (value) => {
         setCurrent(value);
         tabsRef[value].current?.scrollIntoView({behavior: 'smooth'});
     }
-
-    const handlerOpenInfo = useCallback((ingredientId) => {
-        const ingredientDetail = ingredients.filter(item => item._id === ingredientId);
-        dispatch(setIngredient(ingredientDetail[0]));
-    }, [ingredients, dispatch, setIngredient]);
-
-    const handlerCloseInfo = useCallback(() => {
-        dispatch(resetIngredient());
-    }, [dispatch, resetIngredient]);
-
     const handleScroll = () => {
         const bunPosition = tabsRef.bun.current.getBoundingClientRect().top - containerRef.current.getBoundingClientRect().top;
         const saucePosition = tabsRef.sauce.current.getBoundingClientRect().top - containerRef.current.getBoundingClientRect().top;
@@ -59,7 +43,16 @@ const BurgerIngredients = () => {
         });
         setCurrent(closestSection.section);
     }
-    
+
+    const handlerOpenInfo = useCallback((ingredientId) => {
+        const ingredientDetail = ingredients.filter(item => item._id === ingredientId);
+        dispatch(setIngredient(ingredientDetail[0]));
+    }, [ingredients, dispatch, setIngredient]);
+
+    const handlerCloseInfo = useCallback(() => {
+        dispatch(resetIngredient());
+    }, [dispatch, resetIngredient]);
+
     return (
         <section className="max-width-600">
             <div className="d-flex">
@@ -73,7 +66,7 @@ const BurgerIngredients = () => {
                     Начинки
                 </Tab>
             </div>
-            <div className={`custom-scroll ${styles.ingredientsScroll}`} ref={containerRef} onScroll={handleScroll}>
+            <div className={`custom-scroll ${styles.ingredientsScroll}`} ref={containerRef} onScroll={handleScroll}>                
                 <IngredientsList subRef={tabsRef.bun} id='bun' ingredients={ingredients.filter(item => item.type === 'bun')} title="Булки" onClick={handlerOpenInfo}/>
                 <IngredientsList subRef={tabsRef.sauce} id='sauce' ingredients={ingredients.filter(item => item.type === 'sauce')} title="Соусы" onClick={handlerOpenInfo}/>
                 <IngredientsList subRef={tabsRef.main} id='main' ingredients={ingredients.filter(item => item.type === 'main')} title="Начинки" onClick={handlerOpenInfo}/>

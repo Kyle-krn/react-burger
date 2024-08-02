@@ -1,47 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import BurgerIngredients from "../../components/burger-ingredients";
 import BurgerConstructor from "../../components/burger-constructor";
 import styles from './styles.module.css'
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+import { useSelector, useDispatch } from "react-redux";
+import { getIngredients } from "../../services/indgredients";
 
 const API_URL = 'https://norma.nomoreparties.space/api/ingredients'
 
 const IngredientsPage = () => {
-    const [state, setState] = useState({
-        ingredientData: [],
-        isLoading: false,
-        error: null,
-    })
-
+    const dispatch = useDispatch();
+    const {ingredientsRequest, ingredientsFailed, ingredients} = useSelector(state => state.ingredients);
     useEffect(() => {
-        const getIngredients = async () => {
-            try {
-                setState({ ...state, isLoading: true, error: null });
-                const res = await fetch(API_URL);
-                if (!res.ok) {
-                    throw new Error();
-                }
-                const data = await res.json();
-                setState({
-                    ingredientData: data.data,
-                    isLoading: false,
-                    error: null,
-                });
-            } catch (error) {
-                setState({...state, isLoading: false, error: error.message });                
-            }
-        }
-        getIngredients();
-    }, []); 
+        dispatch(getIngredients());
+    }, [dispatch]);
+
     return (
         <>
             <h1 className="text-align-l mt-10 mb-5 text_type_main-large">Соберите бургер</h1>
             <div className={styles.wrapper}>
                 {
-                state.isLoading === false && state.error === null && state.ingredientData.length > 0? 
-                <>
+                ingredientsRequest === false && ingredientsFailed === false && ingredients.length > 0? 
+                <DndProvider backend={HTML5Backend}>
                     <BurgerIngredients />
-                    <BurgerConstructor ingredientData={state.ingredientData}/>
-                </>
+                    <BurgerConstructor />
+                </DndProvider>
                 : 
                 null
             }

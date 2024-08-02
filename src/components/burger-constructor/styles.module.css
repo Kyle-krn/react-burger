@@ -9,8 +9,19 @@
     gap: 16px;
 }
 
+.draggable {
+    position: relative;
+}
+
+.draggable::before {
+    content: url('../../image/icons/draggable.png');
+    position: absolute;
+    top: 30px;
+    left: -29px;
+}
+
 .constructorWrapper {
     gap: 40px;
     max-width: 617px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
