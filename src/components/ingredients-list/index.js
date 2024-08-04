@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 import IngredientsItem from "../ingredients-item";
+import { ingredientPropType } from './types';
 
 const IngredientsList = ({title, ingredients, id, onClick, subRef}) => {
     return (
@@ -16,10 +16,12 @@ const IngredientsList = ({title, ingredients, id, onClick, subRef}) => {
 
 IngredientsList.propTypes = {
     title: PropTypes.string.isRequired,
-    ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+    ingredients: PropTypes.arrayOf(ingredientPropType).isRequired,
     id: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
-    // subRef: PropTypes.ref,
+    subRef: PropTypes.shape({
+        current: PropTypes.instanceOf(Element)
+    }),
 }
 
 export default IngredientsList;

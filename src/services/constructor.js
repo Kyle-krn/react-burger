@@ -1,6 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-
 
 const initialState = {
     bun : null,
@@ -24,7 +22,7 @@ const burgerConstructorSlice = createSlice({
             state.selectedIngredients.splice(action.payload, 1);
         },
         resetBurgerConstructor (state, action) {
-            state.selectedIngredients = [];
+            return initialState;
         },
         setBun (state, action) {
             state.bun = action.payload;

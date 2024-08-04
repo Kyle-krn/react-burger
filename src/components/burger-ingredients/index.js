@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientsList from "../ingredients-list";
@@ -6,7 +6,6 @@ import styles from './styles.module.css';
 import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
 import { useDispatch, useSelector } from "react-redux";
-import { getIngredients } from "../../services/indgredients";
 
 import { setIngredient, resetIngredient } from "../../services/ingredient-detail";
 
@@ -47,11 +46,11 @@ const BurgerIngredients = () => {
     const handlerOpenInfo = useCallback((ingredientId) => {
         const ingredientDetail = ingredients.filter(item => item._id === ingredientId);
         dispatch(setIngredient(ingredientDetail[0]));
-    }, [ingredients, dispatch, setIngredient]);
+    }, [ingredients, dispatch]);
 
     const handlerCloseInfo = useCallback(() => {
         dispatch(resetIngredient());
-    }, [dispatch, resetIngredient]);
+    }, [dispatch]);
 
     return (
         <section className="max-width-600">

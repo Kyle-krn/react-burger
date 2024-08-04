@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
+import { API_URL } from '../utils/apiConfig';
 
 export const getIngredients = createAsyncThunk(
     'ingredients/getIngredients',
     async () => {
-        const response = await fetch('https://norma.nomoreparties.space/api/ingredients'); // замените URL на ваш
+        const response = await fetch(`${API_URL}/api/ingredients`);
         const data = await response.json();
         return data.data;
     }

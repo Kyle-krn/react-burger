@@ -6,8 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { useSelector, useDispatch } from "react-redux";
 import { getIngredients } from "../../services/indgredients";
-
-const API_URL = 'https://norma.nomoreparties.space/api/ingredients'
+import ErrorServerPage from "../error/errorServer/errorServer";
 
 const IngredientsPage = () => {
     const dispatch = useDispatch();
@@ -16,6 +15,9 @@ const IngredientsPage = () => {
         dispatch(getIngredients());
     }, [dispatch]);
 
+    if (ingredientsFailed) {
+        return <ErrorServerPage />
+    }
     return (
         <>
             <h1 className="text-align-l mt-10 mb-5 text_type_main-large">Соберите бургер</h1>
