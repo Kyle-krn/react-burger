@@ -36,6 +36,7 @@ const ingredientsSlice = createSlice({
         .addCase(getIngredients.rejected, (state) => {
         state.ingredientsRequest = false;
         state.ingredientsFailed = true;
+        state.ingredients = [];
         });
     },
   }) 

@@ -53,6 +53,7 @@ const orderSlice = createSlice({
         .addCase(createOrder.rejected, (state) => {
             state.orderRequest = false;
             state.orderError = true;
+            state.orderId = null;
         });
     },
   }) 
