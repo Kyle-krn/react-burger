@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { API_URL } from '../utils/apiConfig';
+import { request } from '../utils/api';
 
 const initialState = {
     orderRequest: false,
@@ -16,15 +16,14 @@ export const createOrder = createAsyncThunk(
         const ingredientIds = [];
         ingredientIds.push(bun._id);
         ingredientIds.push(...selectedIngredients.map(item => item._id));
-        const response = await fetch(`${API_URL}/api/orders`, {
+        const response = await request('/api/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify({ingredients: ingredientIds}),
-        });
-        const data = await response.json();
-        return data;
+        })
+        return response;
     }
 )
 

@@ -52,13 +52,15 @@ const BurgerConstructor = () => {
     const onSortIngredient = (dragIndex, hoverIndex) => {
         dispatch(sortIngredient({dragIndex, hoverIndex}));
     }
+
+    const warningText = <span className={bun?"":"text_type_main-large"} style={{margin: '0 auto', maxWidth: '400px', textAlign: 'center'}}>Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа</span>
     return (
     <>
         <div className={`d-flex flex-column ${styles.constructorWrapper}`} ref={drop}>
             <section className={styles.constructorList}>
-                {!bun && !selectedIngredients.length? 
-                    <span className="text_type_main-large" style={{margin: '0 auto', maxWidth: '400px', textAlign: 'center'}}>Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа</span>
-                    :
+                {!bun && !selectedIngredients.length? (
+                    warningText 
+                ) : (
                     <>
                         <div className='pl-15'>
                             {bun && 
@@ -71,13 +73,17 @@ const BurgerConstructor = () => {
                                     />
                             }
                         </div>
-                        <div className={`custom-scroll ${styles.constructorScroll}`}>
-                            <div className={`pl-15 ${styles.constructorList}`}>
-                                {selectedIngredients.map((item, index) => {
-                                    return <DraggableIngredient key={index} index={index} item={item} name={item.name} price={item.price} image={item.image} onDrop={onSortIngredient} onDeleteIngredient={onDeleteIngredient}/>
-                                })}
+                        {!selectedIngredients.length? (
+                            warningText
+                        ): ( 
+                            <div className={`custom-scroll ${styles.constructorScroll}`}>
+                                <div className={`pl-15 ${styles.constructorList}`}>
+                                    {selectedIngredients.map((item, index) => {
+                                        return <DraggableIngredient key={item.uuid} index={index} item={item} name={item.name} price={item.price} image={item.image} onDrop={onSortIngredient} onDeleteIngredient={onDeleteIngredient}/>
+                                    })}
+                                </div>
                             </div>
-                        </div>
+                        )}
                         <div className='pl-15'>
                             {bun &&
                                 <ConstructorElement
@@ -90,7 +96,7 @@ const BurgerConstructor = () => {
                             }
                         </div>
                     </>
-                } 
+                )} 
             </section>
             <div className="d-flex align-items-center mr-4 justify-content-end">
                 <span className="text text_type_digits-medium mr-10">{totalCoast} <CurrencyIcon/></span>

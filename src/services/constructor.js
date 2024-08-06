@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
     bun : null,
@@ -9,8 +10,18 @@ const burgerConstructorSlice = createSlice({
     name: 'burgerConstructor',
     initialState: initialState,
     reducers: {
-        addIngredient (state, action) {
-            state.selectedIngredients.push(action.payload);
+        addIngredient:{
+            reducer(state, action) {
+                state.selectedIngredients.push(action.payload);
+            },
+            prepare(ingredient) {
+                return {
+                    payload: {
+                        ...ingredient,
+                        uuid: uuidv4(),
+                    }
+                }
+            }
         },
         sortIngredient(state, action) {
             const { dragIndex, hoverIndex } = action.payload;
