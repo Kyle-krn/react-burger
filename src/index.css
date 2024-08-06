@@ -60,6 +60,10 @@ code {
   justify-content: space-around;
 }
 
+.opacity-50 {
+  opacity: 0.5;
+}
+
 .max-width-600 {
   max-width: 600px;
 }
