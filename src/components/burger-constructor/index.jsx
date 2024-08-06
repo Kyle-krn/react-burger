@@ -1,6 +1,6 @@
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './styles.module.css';
-import { useCallback, useEffect, useMemo} from 'react';
+import { useCallback, useMemo} from 'react';
 import Modal from '../modal';
 import OrderDetails from '../order-details';
 import { addIngredient, removeIngredient, resetBurgerConstructor, sortIngredient } from '../../services/constructor';
@@ -23,12 +23,6 @@ const BurgerConstructor = () => {
         return bunCoast + ingredientsCoast;
     }, [bun, selectedIngredients]);
 
-    const buns = useMemo(() => allIngredients.filter(item => item.type === 'bun'), [allIngredients]);
-    useEffect(() => {
-        if (!bun && buns.length > 0) {
-            dispatch(setBun(buns[0]));
-        }
-    }, [dispatch, bun, buns]);
 
     const [, drop] = useDrop({
         accept: 'ingredient',
@@ -62,35 +56,45 @@ const BurgerConstructor = () => {
     <>
         <div className={`d-flex flex-column ${styles.constructorWrapper}`} ref={drop}>
             <section className={styles.constructorList}>
-                <div className='pl-15'>
-                    <ConstructorElement
-                        type="top"
-                        isLocked={true}
-                        text={`${bun?.name} (верх)`}
-                        price={bun?.price}
-                        thumbnail={bun?.image}
-                        />
-                </div>
-                <div className={`custom-scroll ${styles.constructorScroll}`}>
-                    <div className={`pl-15 ${styles.constructorList}`}>
-                        {selectedIngredients.map((item, index) => {
-                            return <DraggableIngredient key={index} index={index} item={item} name={item.name} price={item.price} image={item.image} onDrop={onSortIngredient} onDeleteIngredient={onDeleteIngredient}/>
-                        })}
-                    </div>
-                </div>
-                <div className='pl-15'>
-                    <ConstructorElement
-                        type="bottom"
-                        isLocked={true}
-                        text={`${bun?.name} (низ)`}
-                        price={bun?.price}
-                        thumbnail={bun?.image}
-                        />
-                </div>
+                {!bun && !selectedIngredients.length? 
+                    <span className="text_type_main-large" style={{margin: '0 auto', maxWidth: '400px', textAlign: 'center'}}>Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа</span>
+                    :
+                    <>
+                        <div className='pl-15'>
+                            {bun && 
+                                <ConstructorElement
+                                    type="top"
+                                    isLocked={true}
+                                    text={`${bun?.name} (верх)`}
+                                    price={bun?.price}
+                                    thumbnail={bun?.image}
+                                    />
+                            }
+                        </div>
+                        <div className={`custom-scroll ${styles.constructorScroll}`}>
+                            <div className={`pl-15 ${styles.constructorList}`}>
+                                {selectedIngredients.map((item, index) => {
+                                    return <DraggableIngredient key={index} index={index} item={item} name={item.name} price={item.price} image={item.image} onDrop={onSortIngredient} onDeleteIngredient={onDeleteIngredient}/>
+                                })}
+                            </div>
+                        </div>
+                        <div className='pl-15'>
+                            {bun &&
+                                <ConstructorElement
+                                    type="bottom"
+                                    isLocked={true}
+                                    text={`${bun?.name} (низ)`}
+                                    price={bun?.price}
+                                    thumbnail={bun?.image}
+                                    />
+                            }
+                        </div>
+                    </>
+                } 
             </section>
             <div className="d-flex align-items-center mr-4 justify-content-end">
                 <span className="text text_type_digits-medium mr-10">{totalCoast} <CurrencyIcon/></span>
-                <Button htmlType='submit' onClick={onSubmit}>
+                <Button htmlType='submit' onClick={onSubmit} disabled={!bun || !selectedIngredients.length}>
                     Оформить заказ
                 </Button>
             </div>

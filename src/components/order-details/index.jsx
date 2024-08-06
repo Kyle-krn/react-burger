@@ -21,7 +21,7 @@ const OrderDetails = ({orderId, orderError, orderRequest}) => {
 }
 
 OrderDetails.propTypes = {
-    orderId: PropTypes.number.isRequired,
+    orderId: PropTypes.number,
     orderError: PropTypes.bool.isRequired,
     orderRequest: PropTypes.bool.isRequired,
 }

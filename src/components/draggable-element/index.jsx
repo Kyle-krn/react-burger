@@ -36,7 +36,6 @@ const DraggableIngredient = ({name, price, image, index, onDrop, onDeleteIngredi
         <div ref={ref}>
             <ConstructorElement
                 extraClass={`${styles.draggable} ${isDrag? 'opacity-50' : ''} ${isHover? styles.hover: ''}`}
-                key={index}
                 text={name}
                 price={price}
                 thumbnail={image}
