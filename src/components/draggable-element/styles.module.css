@@ -1,0 +1,15 @@
+.draggable {
+    transition: 0.3s;
+    position: relative;
+}
+
+.draggable.hover {
+    border: 1px solid #6fa46f;
+}
+
+.draggable::before {
+    content: url('../../image/icons/draggable.png');
+    position: absolute;
+    top: 30px;
+    left: -29px;
+}

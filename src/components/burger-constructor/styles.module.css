@@ -12,5 +12,6 @@
 .constructorWrapper {
     gap: 40px;
     max-width: 617px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
+
