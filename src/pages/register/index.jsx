@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './styles.module.css';
 
-const LoginPage = () => {
+const RegisterPage = () => {
     const [form, setForm] = useState({
+        'name': '',
         'email': '',
         'password': '',
         'showPassword': false,
@@ -18,7 +19,15 @@ const LoginPage = () => {
     }
     return (
         <div className={styles.form}>
-            <h1 className='text_type_main-medium'>Вход</h1>
+            <h1 className='text_type_main-medium'>Регистрация</h1>
+            <Input 
+                type='text'
+                placeholder={'Имя'}
+                onChange={e => onChange(e.target.name, e.target.value)}
+                value={form.name}
+                name='name'
+                extraClass='block-center mt-6'
+            />
             <Input 
                 type='email'
                 placeholder={'E-mail'}
@@ -44,18 +53,15 @@ const LoginPage = () => {
                 size="medium"
                 extraClass='mt-6'
             >
-                Войти
+                Зарегистрироваться
             </Button>
             <p className='text_color_inactive mt-20'>
-                Вы - новый пользователь? 
-                <Link to='/register'> Зарегистрироваться</Link>
-            </p>
-            <p className='text_color_inactive mt-4'>
-                Забыли пароль? 
-                <Link to='/forgot-password'> Востановить пароль</Link>
+                Уже зарегестрированы? 
+                <Link to='/login'> Войти</Link>
             </p>
         </div>
     )
 }
 
-export default LoginPage;
+export default RegisterPage;
+
