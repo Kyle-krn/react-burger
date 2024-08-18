@@ -9,6 +9,7 @@ import ResetPasswordPage from '../../pages/resetPassword';
 import AccountPage from '../../pages/account';
 import ProfilePage from '../../pages/account/profile';
 import styles from './styles.module.css';
+import ErrorServerPage from '../../pages/error/errorServer';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path='/profile' element={<AccountPage />}>
                 <Route  path='' element={<ProfilePage />}/>
               </Route>
+              <Route path='*' element={<ErrorServerPage statusCode='404' errorText='Страница не найдена'/>}/>
             </Routes>
         </main>  
       </BrowserRouter>
