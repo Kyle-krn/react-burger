@@ -17,7 +17,7 @@ const LoginPage = () => {
         setForm({...form, showPassword: !form.showPassword})
     }
     return (
-        <div className={styles.form}>
+        <form className={styles.form}>
             <h1 className='text_type_main-medium'>Вход</h1>
             <Input 
                 type='email'
@@ -54,7 +54,7 @@ const LoginPage = () => {
                 Забыли пароль? 
                 <Link to='/forgot-password'> Востановить пароль</Link>
             </p>
-        </div>
+        </form>
     )
 }
 

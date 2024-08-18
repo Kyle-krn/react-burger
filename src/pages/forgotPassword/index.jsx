@@ -12,7 +12,7 @@ const ForgotPassword = () => {
         setForm({...form, [field]: value})
     }
     return (
-        <div className={styles.form}>
+        <form className={styles.form}>
             <h1 className='text_type_main-medium'>Восстановление пароля</h1>
             <Input 
                 type='email'
@@ -34,7 +34,7 @@ const ForgotPassword = () => {
                 Вспомнили пароль? 
                 <Link to='/login'> Войти</Link>
             </p>
-        </div>
+        </form>
     )
 }
 

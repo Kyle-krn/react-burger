@@ -18,7 +18,7 @@ const RegisterPage = () => {
         setForm({...form, showPassword: !form.showPassword})
     }
     return (
-        <div className={styles.form}>
+        <form className={styles.form}>
             <h1 className='text_type_main-medium'>Регистрация</h1>
             <Input 
                 type='text'
@@ -59,7 +59,7 @@ const RegisterPage = () => {
                 Уже зарегестрированы? 
                 <Link to='/login'> Войти</Link>
             </p>
-        </div>
+        </form>
     )
 }
 
