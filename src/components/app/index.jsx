@@ -5,6 +5,7 @@ import IngredientsPage from '../../pages/ingredients';
 import LoginPage from '../../pages/login';
 import RegisterPage from '../../pages/register';
 import ForgotPassword from '../../pages/forgotPassword';
+import ResetPasswordPage from '../../pages/resetPassword';
 import styles from './styles.module.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/reset-password' element={<ResetPasswordPage />} />
           </Routes>
         </BrowserRouter>
       </main>  
