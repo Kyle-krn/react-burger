@@ -1,5 +1,6 @@
-import styles from './styles.module.css';
 import { Logo, Button, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Link } from 'react-router-dom';
+import styles from './styles.module.css';
 
 const Header = () => {
     return (
@@ -8,7 +9,7 @@ const Header = () => {
                 <div className={styles.headerButtonGroup}>
                     <Button htmlType="button" type="secondary" extraClass={`p-4 mr-2 ${styles.headerButton}`}>
                         <BurgerIcon type="primary"/>
-                        <p className="text text_type_main-default ml-2">Конструктор</p>
+                        <Link className="text text_type_main-default ml-2" to='/'>Конструктор</Link>
                     </Button>
                     <Button htmlType="button" type="secondary" extraClass={`p-4 ${styles.headerButton}`}>
                         <ListIcon type="primary"/>
@@ -20,7 +21,7 @@ const Header = () => {
                 </div>
                 <Button htmlType="button" type="secondary" extraClass={`p-4 ${styles.headerButton}`}>
                     <ProfileIcon type="primary"/>
-                    <p className="text text_type_main-default ml-2">Личный кабинет</p>
+                    <Link className="text text_type_main-default ml-2" to='/profile'>Личный кабинет</Link>
                 </Button>
             </div>
         </header>

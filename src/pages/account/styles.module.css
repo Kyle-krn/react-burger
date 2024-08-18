@@ -1,0 +1,21 @@
+.menu {
+    max-width: 320px;
+}
+
+.menu ul li {
+    height: 64px;
+}
+
+.menu a {
+    color: #8585AD;
+}
+
+.activeLink {
+    color: #ffffff !important;
+}
+
+.page {
+    display: flex;
+    margin-top: 120px;
+    column-gap: 60px;
+}
