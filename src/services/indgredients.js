@@ -41,6 +41,4 @@ const ingredientsSlice = createSlice({
   }) 
 
 
-// const { actions, reducer } = ingredientsSlice;
-// Извлекаем и экспортируем каждого создателя по названию
 export default ingredientsSlice.reducer;

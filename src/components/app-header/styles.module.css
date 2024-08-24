@@ -6,6 +6,10 @@
     display: flex;
 }
 
+.header a {
+    color: #8585AD;
+}
+
 .header {
     background-color: #1C1C21;
 }
@@ -21,4 +25,8 @@
     justify-content: space-between;
     max-width: 1240px;
     margin: 0 auto;
+}
+
+.activeLink {
+    color: #ffffff !important;
 }

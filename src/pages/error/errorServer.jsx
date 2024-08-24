@@ -1,16 +1,17 @@
 import styles from './errorServer.module.css';
 
-const ErrorServerPage = () => {
+const ErrorServerPage = ({ statusCode, errorText }) => {
     return (
         <div className={styles.errorWrapper}>
             <div className={styles.error}>ERROR</div>
-            <div className={styles.errorNum}>500
-            <div className={styles.errorNum__clip}>500</div>
+            <div className={styles.errorNum}>
+                {statusCode}
+                <div className={styles.errorNum__clip}>{statusCode}</div>
             </div>
             <p className={styles.desc}>Похоже у нас проблемы...</p>
-            <p>Но мы уже получили сигнал и чиним 🔧</p>
+            <p>{errorText}</p>
         </div>
-    )
-}
+    );
+};
 
 export default ErrorServerPage;

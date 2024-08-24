@@ -1,19 +1,13 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientsList from "../ingredients-list";
 import styles from './styles.module.css';
-import Modal from "../modal";
-import IngredientDetails from "../ingredient-details";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { setIngredient, resetIngredient } from "../../services/ingredient-detail";
 
 const BurgerIngredients = () => {
-    const dispatch = useDispatch();
-    
     const ingredients = useSelector(state => state.ingredients.ingredients);
-    const selectedIngredient = useSelector(state => state.ingredientDetail.ingredient);
     
     const [current, setCurrent] = useState('bun');
     const tabsRef = {
@@ -43,15 +37,6 @@ const BurgerIngredients = () => {
         setCurrent(closestSection.section);
     }
 
-    const handlerOpenInfo = useCallback((ingredientId) => {
-        const ingredientDetail = ingredients.filter(item => item._id === ingredientId);
-        dispatch(setIngredient(ingredientDetail[0]));
-    }, [ingredients, dispatch]);
-
-    const handlerCloseInfo = useCallback(() => {
-        dispatch(resetIngredient());
-    }, [dispatch]);
-
     return (
         <section className="max-width-600">
             <div className="d-flex">
@@ -66,22 +51,10 @@ const BurgerIngredients = () => {
                 </Tab>
             </div>
             <div className={`custom-scroll ${styles.ingredientsScroll}`} ref={containerRef} onScroll={handleScroll}>                
-                <IngredientsList subRef={tabsRef.bun} id='bun' ingredients={ingredients.filter(item => item.type === 'bun')} title="Булки" onClick={handlerOpenInfo}/>
-                <IngredientsList subRef={tabsRef.sauce} id='sauce' ingredients={ingredients.filter(item => item.type === 'sauce')} title="Соусы" onClick={handlerOpenInfo}/>
-                <IngredientsList subRef={tabsRef.main} id='main' ingredients={ingredients.filter(item => item.type === 'main')} title="Начинки" onClick={handlerOpenInfo}/>
+                <IngredientsList subRef={tabsRef.bun} id='bun' ingredients={ingredients.filter(item => item.type === 'bun')} title="Булки" />
+                <IngredientsList subRef={tabsRef.sauce} id='sauce' ingredients={ingredients.filter(item => item.type === 'sauce')} title="Соусы" />
+                <IngredientsList subRef={tabsRef.main} id='main' ingredients={ingredients.filter(item => item.type === 'main')} title="Начинки" />
             </div>
-            {selectedIngredient && 
-                <Modal title="Детали ингредиента" onClose={handlerCloseInfo}>
-                    <IngredientDetails 
-                        image={selectedIngredient.image_large}
-                        name={selectedIngredient.name}
-                        proteins={selectedIngredient.proteins}
-                        fat={selectedIngredient.fat}
-                        calories={selectedIngredient.calories}
-                        carbohydrates={selectedIngredient.carbohydrates}
-                    />
-                </Modal>
-            }
         </section>
     )
 }
