@@ -3,7 +3,7 @@ import ingredientsReducer from './indgredients';
 import ingredientDetailReducer from './ingredient-detail';
 import burgerConstrucorReducer from './constructor';
 import orderReducer from './order';
-
+import userReducer from './user';
 
 const store = configureStore({
   reducer : {
@@ -11,6 +11,7 @@ const store = configureStore({
     ingredientDetail: ingredientDetailReducer,
     burgerConstructor: burgerConstrucorReducer,
     order: orderReducer,
+    auth: userReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 }) 

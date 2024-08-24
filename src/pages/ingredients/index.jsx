@@ -12,8 +12,10 @@ const IngredientsPage = () => {
     const dispatch = useDispatch();
     const {ingredientsRequest, ingredientsFailed, ingredients} = useSelector(state => state.ingredients);
     useEffect(() => {
-        dispatch(getIngredients());
-    }, [dispatch]);
+        if (ingredients.length === 0) {
+            dispatch(getIngredients());
+        }
+    }, [dispatch, ingredients]);
 
     if (ingredientsFailed) {
         return <ErrorServerPage statusCode='500' errorText='Мы уже получили сигнал и чиним 🔧'/>

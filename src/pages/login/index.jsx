@@ -1,60 +1,55 @@
-import React, {useState} from 'react';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
-import styles from './styles.module.css';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../services/user';
+import useForm from '../../hooks/useForm';
+import useAuthNavigation from '../../hooks/useAuthNavigation';
+import AuthForm from '../../components/auth-form';
 
 const LoginPage = () => {
-    const [form, setForm] = useState({
+    const dispatch = useDispatch();
+    console.log('login page')
+    useAuthNavigation();
+
+    const {form, handleChange, togglePasswordVisibility} = useForm({
+        'name': '',
         'email': '',
         'password': '',
         'showPassword': false,
     })
 
-    const onChange = (field, value) => {
-        setForm({...form, [field]: value})
+    const handleSubmit = e => {
+        e.preventDefault()
+        dispatch(loginUser(form))
     }
-    const onClickIcon = () => {
-        setForm({...form, showPassword: !form.showPassword})
-    }
+
+    const inputs = [
+        {type: 'email', placeholder: 'E-mail', name: 'email', value: form.email, extraClass: 'block-center mt-6', onChange: e => handleChange(e.target.name, e.target.value)},
+        {
+            type: form.showPassword? 'text': 'password', 
+            placeholder: 'Пароль', 
+            name: 'password', 
+            value: form.password, 
+            extraClass: 'block-center mt-6', 
+            icon: form.showPassword? 'HideIcon': 'ShowIcon',  
+            onChange: e => handleChange(e.target.name, e.target.value),
+            onIconClick: togglePasswordVisibility,
+            size: 'default'
+        },
+    ]
+
+    const links = [
+        {description: 'Вы - новый пользователь? ', hrefText: 'Зарегистрироваться', href: '/register'},
+        {description: 'Забыли пароль? ', hrefText: 'Востановить пароль', href: '/forgot-password'},
+    ]
+
     return (
-        <form className={styles.form}>
-            <h1 className='text_type_main-medium'>Вход</h1>
-            <Input 
-                type='email'
-                placeholder={'E-mail'}
-                onChange={e => onChange(e.target.name, e.target.value)}
-                value={form.email}
-                name='email'
-                extraClass='block-center mt-6'
-            />
-            <Input 
-                type={form.showPassword? 'text': 'password'}
-                placeholder='Пароль'
-                onChange={e => onChange(e.target.name, e.target.value)}
-                value={form.password}
-                name='password'
-                extraClass='block-center mt-6'
-                icon={form.showPassword? 'HideIcon': 'ShowIcon'}
-                onIconClick={onClickIcon}
-                size={'default'}
-            />
-            <Button 
-                htmlType="submit" 
-                type="primary" 
-                size="medium"
-                extraClass='mt-6'
-            >
-                Войти
-            </Button>
-            <p className='text_color_inactive mt-20'>
-                Вы - новый пользователь? 
-                <Link to='/register'> Зарегистрироваться</Link>
-            </p>
-            <p className='text_color_inactive mt-4'>
-                Забыли пароль? 
-                <Link to='/forgot-password'> Востановить пароль</Link>
-            </p>
-        </form>
+        <AuthForm 
+            title='Вход'
+            btnText='Войти'
+            inputs={inputs}
+            links={links}
+            handleSubmit={handleSubmit}
+        />
     )
 }
 

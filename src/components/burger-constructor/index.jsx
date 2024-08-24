@@ -9,11 +9,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setBun } from '../../services/constructor';
 import { useDrop } from 'react-dnd';
 import DraggableIngredient from '../draggable-element';
+import { useNavigate } from "react-router-dom";
 
 
 const BurgerConstructor = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const {bun, selectedIngredients} = useSelector(state => state.burgerConstructor);
+    const {user} = useSelector(state => state.auth)
     const {orderId, orderError, orderRequest} = useSelector(state => state.order);
     const allIngredients = useSelector(state => state.ingredients.ingredients);
     
@@ -41,8 +44,11 @@ const BurgerConstructor = () => {
     }, [dispatch]);
 
     const onSubmit = useCallback(() => {
+        if (!user.email) {
+            return navigate('/login')
+        }
         dispatch(createOrder());
-    }, [dispatch])
+    }, [dispatch, navigate, user.email])
 
     const handlerCloseModal = useCallback(() => {
         dispatch(resetBurgerConstructor());

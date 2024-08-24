@@ -1,5 +1,5 @@
 import { Logo, Button, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './styles.module.css';
 
 const Header = () => {
@@ -9,19 +9,34 @@ const Header = () => {
                 <div className={styles.headerButtonGroup}>
                     <Button htmlType="button" type="secondary" extraClass={`p-4 mr-2 ${styles.headerButton}`}>
                         <BurgerIcon type="primary"/>
-                        <Link className="text text_type_main-default ml-2" to='/'>Конструктор</Link>
+                        <NavLink 
+                            className={({isActive}) => isActive? `${styles.activeLink} ml-2` : 'ml-2'} 
+                            to='/'
+                        >
+                            Конструктор
+                        </NavLink>
                     </Button>
                     <Button htmlType="button" type="secondary" extraClass={`p-4 ${styles.headerButton}`}>
                         <ListIcon type="primary"/>
-                        <p className="text text_type_main-default ml-2">Лента заказов</p>
+                        <NavLink 
+                            className='ml-2'
+                            to='#'
+                        >
+                            Лента заказов
+                        </NavLink>
                     </Button>
                 </div>
                 <div className={styles.logo}>
                     <Logo/>                    
                 </div>
                 <Button htmlType="button" type="secondary" extraClass={`p-4 ${styles.headerButton}`}>
-                    <ProfileIcon type="primary"/>
-                    <Link className="text text_type_main-default ml-2" to='/profile'>Личный кабинет</Link>
+                    <ProfileIcon extraClass='mr-2' type="primary"/>
+                    <NavLink 
+                        className={({isActive}) => isActive? `${styles.activeLink} ml-2` : 'ml-2'} 
+                        to='/profile'
+                    >
+                        Личный кабинет
+                    </NavLink>
                 </Button>
             </div>
         </header>

@@ -1,57 +1,81 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './styles.module.css';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetPassword, resetRequest } from '../../services/user';
+import useForm from '../../hooks/useForm';
+import useAuthNavigation from '../../hooks/useAuthNavigation';
+import AuthForm from '../../components/auth-form';
 
 const ResetPasswordPage = () => {
-    const [form, setForm] = useState({
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const { state } = location;
+    const { isRequestSuccess } = useSelector(state => state.auth)
+    useEffect(() => {
+        console.log(isRequestSuccess)
+        if (isRequestSuccess) {
+            dispatch(resetRequest())
+            navigate('/login')
+            return
+        }
+    }, [dispatch, isRequestSuccess, navigate])
+
+    useAuthNavigation();
+
+    const {form, handleChange, togglePasswordVisibility} = useForm({
         'password': '',
-        'code': '',
+        'token': '',
         'showPassword': false,
     })
 
-    const onChange = (field, value) => {
-        setForm({...form, [field]: value})
+    useEffect(() => {
+        if (!state?.isForgotPassword) {
+            navigate('/');
+        }
+    }, [navigate, state])
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(resetPassword(form));
     }
-    const onClickIcon = () => {
-        setForm({...form, showPassword: !form.showPassword})
-    }
+
+    const inputs = [
+        {
+            type: 'text',
+            placeholder: 'Введите код из письма',
+            onChange: e => handleChange(e.target.name, e.target.value),
+            value: form.token,
+            name: 'token',
+            extraClass: 'block-center mt-6',
+            size: 'default'
+        },
+        {
+            type: form.showPassword? 'text': 'password', 
+            placeholder: 'Пароль', 
+            name: 'password', 
+            value: form.password, 
+            extraClass: 'block-center mt-6', 
+            icon: form.showPassword? 'HideIcon': 'ShowIcon',  
+            onChange: e => handleChange(e.target.name, e.target.value),
+            onIconClick: togglePasswordVisibility,
+            size: 'default'
+        },
+    ]
+
+    const links = [
+        {description: 'Вспомнили пароль? ', hrefText: 'Войти', href: '/login'},
+    ]
+
+
     return (
-        <form className={styles.form}>
-            <h1 className='text_type_main-medium'>Восстановление пароля</h1>
-            <Input 
-                type={form.showPassword? 'text': 'password'}
-                placeholder='Введите новый пароль'
-                onChange={e => onChange(e.target.name, e.target.value)}
-                value={form.password}
-                name='password'
-                extraClass='block-center mt-6'
-                icon={form.showPassword? 'HideIcon': 'ShowIcon'}
-                onIconClick={onClickIcon}
-                size={'default'}
-            />
-            <Input 
-                type='text'
-                placeholder='Введите код из письма'
-                onChange={e => onChange(e.target.name, e.target.value)}
-                value={form.code}
-                name='code'
-                extraClass='block-center mt-6'
-                size={'default'}
-            />
-            <Button 
-                htmlType="submit" 
-                type="primary" 
-                size="medium"
-                extraClass='mt-6'
-            >
-                Сохранить
-            </Button>
-            <p className='text_color_inactive mt-20'>
-                Вспомнили пароль? 
-                <Link to='/login'> Войти</Link>
-            </p>
-        </form>
+        <AuthForm
+            title='Восстановление пароля'
+            btnText='Сохранить'
+            inputs={inputs}
+            links={links}
+            handleSubmit={handleSubmit}
+        />
     )
 }
 

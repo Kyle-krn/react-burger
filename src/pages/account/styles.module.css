@@ -10,6 +10,11 @@
     color: #8585AD;
 }
 
+.menu span {
+    color: #8585AD;
+    cursor: pointer;
+}
+
 .activeLink {
     color: #ffffff !important;
 }

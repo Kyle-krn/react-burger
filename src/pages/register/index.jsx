@@ -1,65 +1,55 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './styles.module.css';
+import React from 'react';
+import { registerUser } from '../../services/user';
+import { useDispatch } from 'react-redux';
+import useForm from '../../hooks/useForm';
+import useAuthNavigation from '../../hooks/useAuthNavigation';
+import AuthForm from '../../components/auth-form';
 
 const RegisterPage = () => {
-    const [form, setForm] = useState({
-        'name': '',
-        'email': '',
-        'password': '',
-        'showPassword': false,
+    const dispatch = useDispatch();
+    useAuthNavigation();
+
+    const {form, handleChange, togglePasswordVisibility} = useForm({
+        name: '',
+        email: '',
+        password: '',
+        showPassword: false,
     })
 
-    const onChange = (field, value) => {
-        setForm({...form, [field]: value})
+    const handleSubmit = e => {
+        e.preventDefault()
+        dispatch(registerUser(form))
     }
-    const onClickIcon = () => {
-        setForm({...form, showPassword: !form.showPassword})
-    }
+
+    const inputs = [
+        {type: 'text', placeholder: 'Имя', name: 'name', value: form.name, extraClass: 'block-center mt-6', onChange: e => handleChange(e.target.name, e.target.value)},
+        {type: 'email', placeholder: 'E-mail', name: 'email', value: form.email, extraClass: 'block-center mt-6', onChange: e => handleChange(e.target.name, e.target.value)},
+        {
+            type: form.showPassword? 'text': 'password', 
+            placeholder: 'Пароль', 
+            name: 'password', 
+            value: form.password, 
+            extraClass: 'block-center mt-6', 
+            icon: form.showPassword? 'HideIcon': 'ShowIcon',  
+            onChange: e => handleChange(e.target.name, e.target.value),
+            onIconClick: togglePasswordVisibility,
+            size: 'default'
+        },
+    ]
+
+    const links = [
+        {description: 'Уже зарегестрированы? ', hrefText: 'Войти', href: '/login'}
+    ]
+
+
     return (
-        <form className={styles.form}>
-            <h1 className='text_type_main-medium'>Регистрация</h1>
-            <Input 
-                type='text'
-                placeholder={'Имя'}
-                onChange={e => onChange(e.target.name, e.target.value)}
-                value={form.name}
-                name='name'
-                extraClass='block-center mt-6'
-            />
-            <Input 
-                type='email'
-                placeholder={'E-mail'}
-                onChange={e => onChange(e.target.name, e.target.value)}
-                value={form.email}
-                name='email'
-                extraClass='block-center mt-6'
-            />
-            <Input 
-                type={form.showPassword? 'text': 'password'}
-                placeholder='Пароль'
-                onChange={e => onChange(e.target.name, e.target.value)}
-                value={form.password}
-                name='password'
-                extraClass='block-center mt-6'
-                icon={form.showPassword? 'HideIcon': 'ShowIcon'}
-                onIconClick={onClickIcon}
-                size={'default'}
-            />
-            <Button 
-                htmlType="submit" 
-                type="primary" 
-                size="medium"
-                extraClass='mt-6'
-            >
-                Зарегистрироваться
-            </Button>
-            <p className='text_color_inactive mt-20'>
-                Уже зарегестрированы? 
-                <Link to='/login'> Войти</Link>
-            </p>
-        </form>
+        <AuthForm 
+            title='Регистрация'
+            btnText='Зарегистрироваться'
+            inputs={inputs}
+            links={links}
+            handleSubmit={handleSubmit}
+        />
     )
 }
 

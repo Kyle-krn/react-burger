@@ -1,9 +1,15 @@
 import React from "react";
 import styles from './styles.module.css';
 import { Outlet, NavLink } from "react-router-dom";
-import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../services/user";
 
 const AccountPage = () => {
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logoutUser())
+    }
     return (
         <div className={styles.page}>
             <div className={styles.menu}>
@@ -27,9 +33,9 @@ const AccountPage = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink>
+                        <span onClick={handleLogout}>
                             Выход
-                        </NavLink>
+                        </span>
                     </li>
                 </ul>
                 <span className="text_color_inactive">В этом разделе вы можете изменить свои персональные данные</span>
