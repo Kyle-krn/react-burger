@@ -1,7 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid';
+import { BurgerConstructorState, BurgerConstructorIngredient, SortIngredient } from './types';
+import { Ingredient } from '../ingredients/types';
 
-const initialState = {
+
+const initialState: BurgerConstructorState = {
     bun : null,
     selectedIngredients: [],
 }
@@ -11,31 +14,31 @@ const burgerConstructorSlice = createSlice({
     initialState: initialState,
     reducers: {
         addIngredient:{
-            reducer(state, action) {
+            reducer(state, action: PayloadAction<BurgerConstructorIngredient>) {
                 state.selectedIngredients.push(action.payload);
             },
-            prepare(ingredient) {
+            prepare(ingredient: Ingredient) {
                 return {
                     payload: {
                         ...ingredient,
                         uuid: uuidv4(),
-                    }
+                    } as BurgerConstructorIngredient
                 }
             }
         },
-        sortIngredient(state, action) {
+        sortIngredient(state, action: PayloadAction<SortIngredient>) {
             const { dragIndex, hoverIndex } = action.payload;
             const draggedItem = state.selectedIngredients[dragIndex];
             state.selectedIngredients.splice(dragIndex, 1);
             state.selectedIngredients.splice(hoverIndex, 0, draggedItem);
         },
-        removeIngredient (state, action) {
+        removeIngredient (state, action: PayloadAction<number>) {
             state.selectedIngredients.splice(action.payload, 1);
         },
-        resetBurgerConstructor (state, action) {
+        resetBurgerConstructor (state) {
             return initialState;
         },
-        setBun (state, action) {
+        setBun (state, action: PayloadAction<Ingredient>) {
             state.bun = action.payload;
         },
     },

@@ -1,22 +1,25 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { request } from '../utils/api';
+import { request } from '../../utils/api';
+import { OrderInitialStateType, OrderResponse } from './types';
+import { RootState } from '..';
 
-const initialState = {
+const initialState: OrderInitialStateType = {
     orderRequest: false,
     orderError: false,
     orderId: null,
 }
 
-export const createOrder = createAsyncThunk(
-    'burgerConstructor/createOrder',
+export const createOrder = createAsyncThunk<OrderResponse, void, {state: RootState}>(
+    'order/createOrder',
     async (_, {getState}) => {
         const state = getState();
         const {bun, selectedIngredients} = state.burgerConstructor;
         const ingredientIds = [];
-        ingredientIds.push(bun._id);
+        ingredientIds.push(bun?._id);
         ingredientIds.push(...selectedIngredients.map(item => item._id));
-        const response = await request('/api/orders', {
+        console.log('log cons')
+        const response = await request<OrderResponse>('/api/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -31,7 +34,7 @@ const orderSlice = createSlice({
     name: 'order',
     initialState: initialState,
     reducers: {
-        resetOrder (state, action) {
+        resetOrder (state) {
             return initialState;
         }
     },
@@ -41,7 +44,7 @@ const orderSlice = createSlice({
             state.orderRequest = true;
             state.orderError = false;
             })
-        .addCase(createOrder.fulfilled, (state, action) => {
+        .addCase(createOrder.fulfilled, (state, action: PayloadAction<OrderResponse>) => {
             state.orderRequest = false;
             if (action.payload.success) {
                 state.orderId = action.payload.order.number;

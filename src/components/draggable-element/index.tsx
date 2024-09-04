@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useRef } from "react";
+import { FC, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import styles from './styles.module.css';
+import { DraggableIngredientType } from './types';
 
-const DraggableIngredient = ({name, price, image, index, onDrop, onDeleteIngredient}) => {
-    const ref = useRef();
-    const [{isHover}, drop] = useDrop({
+const DraggableIngredient: FC<DraggableIngredientType> = ({name, price, image, index, onDrop, onDeleteIngredient}) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const [{isHover}, drop] = useDrop<{index: number}, void, {isHover: boolean}>({
         accept: 'sortIngredient',
         collect: monitor => ({
             isHover: monitor.isOver(),
@@ -43,15 +43,6 @@ const DraggableIngredient = ({name, price, image, index, onDrop, onDeleteIngredi
             />
         </div>
     )
-}
-
-DraggableIngredient.propTypes = {
-    name: PropTypes.string.isRequired, 
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired, 
-    onDrop: PropTypes.func.isRequired,
-    onDeleteIngredient: PropTypes.func.isRequired,
 }
 
 export default DraggableIngredient;

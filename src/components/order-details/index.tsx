@@ -1,8 +1,9 @@
 import styles from './styles.module.css';
 import done from '../../image/done.png';
-import PropTypes from 'prop-types';
+import { FC } from 'react';
+import { OrderDetailType } from './types';
 
-const OrderDetails = ({orderId, orderError, orderRequest}) => {
+const OrderDetails: FC<OrderDetailType> = ({orderId, orderError, orderRequest}) => {
     return (
         <div className='d-flex flex-column text-align-center'>
             {orderError && <p className='mb-15 text_type_main-medium'>Что то пошло не так...</p>}
@@ -18,12 +19,6 @@ const OrderDetails = ({orderId, orderError, orderRequest}) => {
             }
         </div>
     )
-}
-
-OrderDetails.propTypes = {
-    orderId: PropTypes.number,
-    orderError: PropTypes.bool.isRequired,
-    orderRequest: PropTypes.bool.isRequired,
 }
 
 export default OrderDetails;
