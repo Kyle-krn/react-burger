@@ -105,3 +105,12 @@ button {
     cursor: pointer; /* Указывает, что элемент кликабельный */
     outline: none; /* Убирает обводку при фокусе */
 }
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
