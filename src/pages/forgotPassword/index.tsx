@@ -15,7 +15,7 @@ const ForgotPassword = () => {
         'showPassword': false,
     })
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch(forgotPassword(form))
     }

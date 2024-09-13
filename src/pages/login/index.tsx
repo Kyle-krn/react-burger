@@ -18,7 +18,7 @@ const LoginPage = () => {
         'showPassword': false,
     })
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch(loginUser(form))
     }

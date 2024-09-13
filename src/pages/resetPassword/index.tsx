@@ -35,7 +35,7 @@ const ResetPasswordPage = () => {
         }
     }, [navigate, state])
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(resetPassword(form));
     }

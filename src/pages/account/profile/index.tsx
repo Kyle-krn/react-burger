@@ -47,7 +47,7 @@ const ProfilePage = () => {
         setForm({ ...form, [field]: value });
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (form.email && form.name && form.password) {
             dispatch(upadteUserInfo({

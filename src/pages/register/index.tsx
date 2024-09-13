@@ -17,7 +17,7 @@ const RegisterPage = () => {
         showPassword: false,
     })
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch(registerUser(form))
     }
