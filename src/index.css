@@ -59,11 +59,12 @@ code {
 .justify-content-around {
   justify-content: space-around;
 }
-
 .opacity-50 {
   opacity: 0.5;
 }
-
+.block-center {
+  margin: 0 auto;
+}
 .max-width-600 {
   max-width: 600px;
 }
@@ -113,4 +114,21 @@ a {
 
 li {
   list-style-type: none;
+  text-decoration: none;
+  color: #4C4CFF;
+}
+
+ul {
+  list-style-type: none; /* Убирает маркеры списка */
+  margin: 0;           /* Убирает внешние отступы */
+  padding: 0;          /* Убирает внутренние отступы */
+}
+
+li {
+  margin: 0;           /* Убирает внешние отступы */
+  padding: 0;          /* Убирает внутренние отступы */
+}
+
+.error-text {
+  color: rgb(187, 82, 82);
 }

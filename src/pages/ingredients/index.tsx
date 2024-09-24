@@ -8,6 +8,7 @@ import { getIngredients } from "../../services/ingredients";
 import ErrorServerPage from "../error/errorServer";
 import { useAppDispatch, useAppSelector } from "../../services";
 
+
 const IngredientsPage = () => {
     const dispatch = useAppDispatch();
     const {ingredientsRequest, ingredientsFailed, ingredients} = useAppSelector(state => state.ingredients);
@@ -16,6 +17,7 @@ const IngredientsPage = () => {
             dispatch(getIngredients());
         }
     }, [dispatch, ingredients, ingredientsFailed]);
+
 
     if (ingredientsFailed) {
         return <ErrorServerPage statusCode='500' errorText='Мы уже получили сигнал и чиним 🔧'/>
