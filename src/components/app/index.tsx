@@ -16,6 +16,7 @@ import IngredientDetails from '../ingredient-details';
 import { getIngredients } from '../../services/ingredients';
 import Modal from '../modal';
 import { useAppDispatch, useAppSelector } from '../../services';
+import FeedPage from '../../pages/feed';
 
 function App() {
   const { isLoadingUser } = useAppSelector(state => state.auth);
@@ -39,6 +40,7 @@ function App() {
           <main className={`text text_type_main-default ${styles.app}`}>
               <Routes location={background || location}>
                 <Route path='/' element={<IngredientsPage />} />
+                <Route path='/feed' element={<FeedPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/register' element={<RegisterPage />} />
                 <Route path='/forgot-password' element={<ForgotPassword />} />
