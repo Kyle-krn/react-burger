@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import Header from '../app-header';
 import IngredientsPage from '../../pages/ingredients';
 import LoginPage from '../../pages/login';
@@ -17,19 +17,22 @@ import { getIngredients } from '../../services/ingredients';
 import Modal from '../modal';
 import { useAppDispatch, useAppSelector } from '../../services';
 import FeedPage from '../../pages/feed';
+import FeedDetails from '../feed-details';
+import FeedModal from '../feed-modal';
+import OrdersPage from '../../pages/orders';
 
 function App() {
   const { isLoadingUser } = useAppSelector(state => state.auth);
   const location = useLocation();
   const navigate = useNavigate();
   const background = location.state?.background;
-
+  const navigationType = useNavigationType();
+  console.log(navigationType)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUserInfo());
     dispatch(getIngredients());
   }, [dispatch])
-
   return (
     <div>
       {
@@ -46,8 +49,11 @@ function App() {
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route path='/reset-password' element={<ResetPasswordPage />} />
                 <Route path='/ingredients/:id' element={<IngredientDetails />} />
+                <Route path='/feed/:id' element={<FeedDetails />} />
+                <Route path='/profile/orders/:id' element={<ProtectedRouteElement element={<OrdersPage />}/>} />
                 <Route path='/profile' element={<ProtectedRouteElement element={<AccountPage />}/>}>
                   <Route  path='' element={<ProfilePage />}/>
+                  <Route  path='orders' element={<OrdersPage />}/>
                 </Route>
                 <Route path='*' element={<ErrorServerPage statusCode='404' errorText='Страница не найдена'/>}/>
               </Routes>
@@ -62,8 +68,16 @@ function App() {
                     </Modal>
                   }
                 />
-              </Routes>
-            )}
+                <Route
+                  path="/feed/:id"
+                  element={<FeedModal />}
+                />
+                <Route
+                  path="/profile/orders/:id"
+                  element={<FeedModal />}
+                />
+              </Routes> 
+              )}
           </main>  
         </>
       }

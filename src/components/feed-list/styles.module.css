@@ -1,6 +1,5 @@
 .blockScroll {
-    width: 600px;
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 210px);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -30,35 +29,7 @@
     position: relative;
 }
 
-.image {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: -15px;
-    border: 2px solid #4C4CFF;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    position: relative;
-    background-color: #131316;
-}
 
-.image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.extra img {
-    opacity: 0.5;
-}
-
-.extra span {
-    position: absolute;
-}
 
 .orderPrice {
     display: flex;

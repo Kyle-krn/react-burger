@@ -1,0 +1,26 @@
+.SuccessTitle {
+    color: #00CCCC
+}
+
+.errorTitle {
+    color: #b32f06
+}
+
+.feedItem {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* 3 колонки: картинка, текст, количество */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+.feedItemCoast {
+    display: flex;
+    gap: 5px
+}
+
+.feedItems {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}

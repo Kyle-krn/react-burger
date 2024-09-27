@@ -1,11 +1,12 @@
+import { useAppSelector } from '../../services';
 import styles from './styles.module.css'
 
 
 const FeedStat = () => {
-    const readyOrders = ['034533', '034532', '034530', '034527', '034525'];
-    const inProgressOrders = ['034538', '034541', '034542'];
-    const totalOrders = 28752;
-    const todayOrders = 138;
+    const {feeds} = useAppSelector(state => state.feeds)
+    const readyOrders = feeds.filter(item => item.status === 'done').slice(0,10).map(item => item.number);
+    const inProgressOrders = feeds.filter(item => item.status === 'pending').map(item => item.number);
+    const {total, totalToday } = useAppSelector(state => state.feeds)
 
     return  (
         <div className={styles.container}>
@@ -30,12 +31,12 @@ const FeedStat = () => {
             
             <div className={styles.countBoard}>
                 <h2 className={`${styles.countTitle} text_type_main-medium`}>Выполнено за все время:</h2>
-                <p className={`${styles.countValue} text_type_digits-large`}>{totalOrders.toLocaleString()}</p>
+                <p className={`${styles.countValue} text_type_digits-large`}>{total}</p>
             </div>
             
             <div className={styles.countBoard}>
                 <h2 className={`${styles.countTitle} text_type_main-medium`}>Выполнено за сегодня:</h2>
-                <p className={`${styles.countValue} text_type_digits-large`}>{todayOrders}</p>
+                <p className={`${styles.countValue} text_type_digits-large`}>{totalToday}</p>
             </div>
         </div>
     )
