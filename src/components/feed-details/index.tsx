@@ -31,7 +31,6 @@ const FeedDetails = () => {
         const ingredients = getIngredients(ingredientsStringArr);
         return ingredients.reduce((acc, item) => acc + item.price, 0)
     }
-    console.log(getIngredients(order?.ingredients as string[]))
     useEffect(() => {
         if (id) {
             const findFeed = feeds.find(item => item.number.toLocaleString() === id)
