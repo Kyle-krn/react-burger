@@ -32,7 +32,7 @@ const IngredientsItem: FC<IngredientsItemType> = ({image, type, name, price, id}
                 to={`/ingredients/${id}`}
                 state={{background: location}}
             >
-                <div className={`${styles.ingredientCard} ${isDrag? 'opacity-50': ''}`} ref={drag}>
+                <div data-cy={type === 'bun'? 'ingredient-bun': 'ingredient-item'} className={`${styles.ingredientCard} ${isDrag? 'opacity-50': ''}`} ref={drag}>
                     {count? <Counter count={count} size="default" extraClass="m-1" />:null}
                     <img className="pl-4 pr-4" src={image} alt={name}></img>
                     <span className={`mt-1 mb-1 text text_type_digits-default ${styles.ingredientCardCoast}`}>

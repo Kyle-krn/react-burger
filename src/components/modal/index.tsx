@@ -29,10 +29,10 @@ const Modal: FC<ModalType> = ({title, onClose, children, extraClassName = 'text_
         (
             <>
                 <ModalOverlay onClose={onClose}/>
-                <div className={`text text_type_main-default ${styles.modal}`}>
+                <div data-cy="modal" className={`text text_type_main-default ${styles.modal}`}>
                     <div className={`modal-header d-flex align-items-center justify-content-between ${title? 'pt-10' : 'pt-15'}`}>
                         <span className={extraClassName}>{title}</span>
-                        <button className={styles.closeBtn} onClick={onClose}><CloseIcon type="primary" /></button>
+                        <button data-cy="modal-close-btn" className={styles.closeBtn} onClick={onClose}><CloseIcon type="primary" /></button>
                     </div>
                     <div className='modal-body'>{children}</div>
                 </div>

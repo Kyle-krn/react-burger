@@ -1,6 +1,14 @@
 import { Order } from "../orders/types";
 
-export interface FeedMessage {
+export type FeedState = {
+  feeds: Order[];
+  isConnected: boolean;
+  isError: boolean;
+  total: number;
+  totalToday: number;
+};
+
+export interface TFeedMessage {
   success: boolean;
   orders: Order[];
   total: number;

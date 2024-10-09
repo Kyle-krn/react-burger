@@ -1,14 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FeedMessage as TFeedMessage } from './types';
-import { Order } from '../orders/types';
-
-type FeedState = {
-  feeds: Order[];
-  isConnected: boolean;
-  isError: boolean;
-  total: number;
-  totalToday: number;
-};
+import { FeedState, TFeedMessage } from './types';
 
 const initialState: FeedState = {
   feeds: [],
