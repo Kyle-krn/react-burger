@@ -19,8 +19,8 @@ const Header = () => {
                     <Button htmlType="button" type="secondary" extraClass={`p-4 ${styles.headerButton}`}>
                         <ListIcon type="primary"/>
                         <NavLink 
-                            className='ml-2'
-                            to='#'
+                            className={({isActive}) => isActive? `${styles.activeLink} ml-2` : 'ml-2'} 
+                            to='/feed'
                         >
                             Лента заказов
                         </NavLink>

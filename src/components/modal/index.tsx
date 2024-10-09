@@ -7,7 +7,7 @@ import { ModalType } from './types';
 
 const modalRoot = document.getElementById("react-modals");
 
-const Modal: FC<ModalType> = ({title, onClose, children}) => {
+const Modal: FC<ModalType> = ({title, onClose, children, extraClassName = 'text_type_main-large'}) => {
     
     const handlerKeyPress = useCallback((e: KeyboardEvent) => {
         if (e.code === 'Escape') {
@@ -31,7 +31,7 @@ const Modal: FC<ModalType> = ({title, onClose, children}) => {
                 <ModalOverlay onClose={onClose}/>
                 <div className={`text text_type_main-default ${styles.modal}`}>
                     <div className={`modal-header d-flex align-items-center justify-content-between ${title? 'pt-10' : 'pt-15'}`}>
-                        <span className='text_type_main-large'>{title}</span>
+                        <span className={extraClassName}>{title}</span>
                         <button className={styles.closeBtn} onClick={onClose}><CloseIcon type="primary" /></button>
                     </div>
                     <div className='modal-body'>{children}</div>

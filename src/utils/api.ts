@@ -1,5 +1,5 @@
 const API_URL = 'https://norma.nomoreparties.space'
-
+export const SOCKET_URL = 'wss://norma.nomoreparties.space/orders/all'
 export interface ResponseBody {
   success: boolean;
 }
@@ -37,7 +37,7 @@ export const request = async <T>(url: string, options: RequestInit = {}): Promis
         const res = await fetch(API_URL + url, options);
         return await checkResponse<T>(res);
       } catch (err) {
-        if (err instanceof Error && err.message === "jwt expired") {
+        if (err && typeof err === 'object' && 'message' in err && err.message === "jwt expired") {
             try {
               const refreshData = await refreshToken(); //обновляем токен
               (options.headers as Record<string, string>)['authorization'] = refreshData.accessToken;
