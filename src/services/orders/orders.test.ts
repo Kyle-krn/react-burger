@@ -3,17 +3,12 @@ import ordersReducer, {
     wsConnectionError,
     wsConnectionClosed,
     wsGetMessage,
+    initialState,
   } from './index';
   import { PayloadAction } from '@reduxjs/toolkit'
   import { OrdersMessage, Order } from './types';
   
   describe('ordersReducer', () => {
-    const initialState = {
-      orders: [],
-      isConnected: false,
-      isError: false,
-    };
-  
     it('должен вернуть начальное состояние', () => {
       const result = ordersReducer(undefined, { type: '' });
       expect(result).toEqual(initialState);

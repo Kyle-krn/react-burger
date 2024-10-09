@@ -1,5 +1,4 @@
-import reducer, { createOrder, getOrder, resetOrder, setSelectedOrder } from './index';
-import { OrderInitialStateType } from './types';
+import reducer, { createOrder, getOrder, initialState, resetOrder, setSelectedOrder } from './index';
 import { Order } from '../orders/types';
 import { AnyAction } from 'redux';
 import { unwrapResult } from '@reduxjs/toolkit';
@@ -19,13 +18,6 @@ const mockOrder: Order = {
     status: "pending",
     updatedAt: "2024-10-06T12:00:00.000Z",
     _id: "643d69a5c3f7b9001cfa093c"
-};
-
-const initialState: OrderInitialStateType = {
-    orderRequest: false,
-    orderError: false,
-    orderId: null,
-    order: null,
 };
 
 describe('order reducer', () => {

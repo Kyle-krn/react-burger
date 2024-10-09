@@ -8,14 +8,9 @@ import reducer, {
   
   import { BurgerConstructorState, BurgerConstructorIngredient } from './types';
   import { Ingredient } from '../ingredients/types';
-
+  import { initialState } from './index';
   
   describe('burgerConstructorSlice', () => {
-    const initialState: BurgerConstructorState = {
-      bun: null,
-      selectedIngredients: [],
-    };
-  
     const mockIngredient: Ingredient = {
       _id: '1',
       name: 'Test Ingredient',

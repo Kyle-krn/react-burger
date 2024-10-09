@@ -1,7 +1,9 @@
 import reducer, { getIngredients } from './index';
-import { IngredientInitialState, Ingredient } from './types';
+import { Ingredient } from './types';
 import { AnyAction } from 'redux';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { initialState } from './index';
+
 
 // Мокируем request для тестов
 jest.mock('../../utils/api', () => ({
@@ -40,12 +42,6 @@ const mockIngredients: Ingredient[] = [
         __v: 0
     }
 ];
-
-const initialState: IngredientInitialState = {
-    ingredients: [],
-    ingredientsRequest: false,
-    ingredientsFailed: false,
-};
 
 describe('ingredients reducer', () => {
     it('should return the initial state', () => {

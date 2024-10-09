@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FeedState, TFeedMessage } from './types';
 
-const initialState: FeedState = {
+export const initialState: FeedState = {
   feeds: [],
   isConnected: false,
   isError: false,

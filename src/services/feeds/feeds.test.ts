@@ -4,18 +4,11 @@ import reducer, {
     wsConnectionClosed,
     wsGetMessage,
   } from './index';
-  import { FeedState, TFeedMessage } from './types';
+  import { TFeedMessage } from './types';
   import { Order} from '../orders/types'; 
-  
+  import { initialState } from './index';
+
   describe('feedReducer', () => {
-    const initialState: FeedState = {
-      feeds: [],
-      isConnected: false,
-      isError: false,
-      total: 0,
-      totalToday: 0,
-    };
-  
     const mockOrders: Order[] = [
       {
         createdAt: '2024-01-01T00:00:00Z',

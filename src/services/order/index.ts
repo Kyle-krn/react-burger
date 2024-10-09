@@ -5,7 +5,7 @@ import { OrderInitialStateType, CreateOrderResponse } from './types';
 import { RootState } from '..';
 import { Order, OrderResponse } from '../orders/types';
 
-const initialState: OrderInitialStateType = {
+export const initialState: OrderInitialStateType = {
     orderRequest: false,
     orderError: false,
     orderId: null,
