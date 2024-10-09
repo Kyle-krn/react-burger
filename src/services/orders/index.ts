@@ -7,7 +7,7 @@ type OrdersState = {
   isError: boolean;
 };
 
-const initialState: OrdersState = {
+export const initialState: OrdersState = {
   orders: [],
   isConnected: false,
   isError: false,

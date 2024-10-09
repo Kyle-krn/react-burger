@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../app-header';
 import IngredientsPage from '../../pages/ingredients';
 import LoginPage from '../../pages/login';
@@ -26,8 +26,6 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const background = location.state?.background;
-  const navigationType = useNavigationType();
-  console.log(navigationType)
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUserInfo());

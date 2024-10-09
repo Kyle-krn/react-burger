@@ -33,7 +33,7 @@ const DraggableIngredient: FC<DraggableIngredientType> = ({name, price, image, i
     })
     drag(drop(ref));
     return (
-        <div ref={ref}>
+        <div ref={ref} data-cy="ingredient-item">
             <ConstructorElement
                 extraClass={`${styles.draggable} ${isDrag? 'opacity-50' : ''} ${isHover? styles.hover: ''}`}
                 text={name}

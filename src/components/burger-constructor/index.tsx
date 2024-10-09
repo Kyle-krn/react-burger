@@ -69,21 +69,23 @@ const BurgerConstructor = () => {
     const warningText = <span className={bun?"":"text_type_main-large"} style={{margin: '0 auto', maxWidth: '400px', textAlign: 'center'}}>Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа</span>
     return (
     <>
-        <div className={`d-flex flex-column ${styles.constructorWrapper}`} ref={drop}>
+        <div data-cy="constructor-drop-zone" className={`d-flex flex-column ${styles.constructorWrapper}`} ref={drop}>
             <section className={styles.constructorList}>
                 {!bun && !selectedIngredients.length? (
                     warningText 
                 ) : (
                     <>
                         <div className='pl-15'>
-                            {bun && 
-                                <ConstructorElement
-                                    type="top"
-                                    isLocked={true}
-                                    text={`${bun?.name} (верх)`}
-                                    price={bun?.price}
-                                    thumbnail={bun?.image}
-                                    />
+                            {bun &&
+                                <div data-cy="bun-top">
+                                    <ConstructorElement
+                                        type="top"
+                                        isLocked={true}
+                                        text={`${bun?.name} (верх)`}
+                                        price={bun?.price}
+                                        thumbnail={bun?.image}
+                                        />
+                                </div>
                             }
                         </div>
                         {!selectedIngredients.length? (
@@ -99,13 +101,15 @@ const BurgerConstructor = () => {
                         )}
                         <div className='pl-15'>
                             {bun &&
-                                <ConstructorElement
-                                    type="bottom"
-                                    isLocked={true}
-                                    text={`${bun?.name} (низ)`}
-                                    price={bun?.price}
-                                    thumbnail={bun?.image}
-                                    />
+                                <div data-cy="bun-bottom">
+                                    <ConstructorElement
+                                        type="bottom"
+                                        isLocked={true}
+                                        text={`${bun?.name} (низ)`}
+                                        price={bun?.price}
+                                        thumbnail={bun?.image}
+                                        />
+                                </div>
                             }
                         </div>
                     </>
@@ -113,7 +117,7 @@ const BurgerConstructor = () => {
             </section>
             <div className="d-flex align-items-center mr-4 justify-content-end">
                 <span className="text text_type_digits-medium mr-10">{totalCoast} <CurrencyIcon type={"secondary"}/></span>
-                <Button htmlType='submit' onClick={onSubmit} disabled={!bun || !selectedIngredients.length}>
+                <Button id="create-order-btn" htmlType='submit' onClick={onSubmit} disabled={!bun || !selectedIngredients.length}>
                     Оформить заказ
                 </Button>
             </div>

@@ -4,7 +4,7 @@ import { BurgerConstructorState, BurgerConstructorIngredient, SortIngredient } f
 import { Ingredient } from '../ingredients/types';
 
 
-const initialState: BurgerConstructorState = {
+export const initialState: BurgerConstructorState = {
     bun : null,
     selectedIngredients: [],
 }

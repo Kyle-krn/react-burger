@@ -13,7 +13,7 @@ export const getIngredients = createAsyncThunk<Ingredient[]>(
     }
 )
 
-const initialState: IngredientInitialState = { 
+export const initialState: IngredientInitialState = { 
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false, 
